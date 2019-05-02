@@ -1,0 +1,194 @@
+<?php
+
+// Cette traduction n'est pas très importante, nous la finirons plus tard. 
+// Traduction par : https://dle-news.fr/
+// Cette traduction est encore en bêta.
+// Vous trouverez obligatoirement des erreurs, merci de bien vouloir signaler ici :	https://goo.gl/XgQe5f
+
+$help_sections['title']['templates'] ="Templates";
+$help_sections['body']['templates'] = <<<HTML
+Les modèles sont utilisés pour modifier l'affichage des nouvelles. Vous pouvez modifier différentes parties du modèle qui sont utilisées pour afficher différentes parties de l'actualité. Par exemple, "Article Annotation" est utilisé pour changer l'apparence des nouvelles actives, "Article complet" est utilisé pour changer l'apparence de l'article complet, "Commentaires" est utilisé pour changer l'apparence des commentaires, etc. <br> <br>
+Vous pouvez utiliser HTML pour modifier les différentes structures lorsque vous modifiez la partie d'un modèle. Vous devez ajouter des symboles spéciaux dans vos modèles pour définir l'emplacement d'un titre d'actualité, du nom de l'auteur, de la date, etc. Chaque partie du motif correspond à une désignation spécifique.
+Les valeurs des variables peuvent être visualisées sur la page d'édition du modèle. Cliquez sur le nom de la partie de modèle pour accéder à cette page. Par exemple: <b> {title} </b> est le titre de l'article, <b> {author} </b> est l'auteur de l'article, etc. <br> <br>
+Vous pouvez utiliser plusieurs modèles différents.
+HTML;
+
+$help_sections['title']['xfields'] ="Champs supplémentaires";
+$help_sections['body']['xfields'] = <<<HTML
+Les champs supplémentaires peuvent être activés via <b> Paramètres </b> & gt; <b> Champs supplémentaires </b>. Cette fonctionnalité est utile, par exemple, lors de la publication d'une référence à la source d'origine dans l'article. <br>
+Ajoutez un nouveau champ en cliquant sur "Ajouter un champ". Sur la page suivante, vous devez entrer un nom unique pour le champ, la description du champ et le contenu du champ par défaut. Vous devez également choisir si vous souhaitez utiliser des champs optionnels. Si vous n'utilisez pas un champ comme celui-ci, vous pouvez le laisser vide lorsque vous ajoutez / modifiez l'article. Le module ne sera pas inclus dans ce cas. <br> <br>
+Si vous souhaitez utiliser ce champ sur la page d'actualité, vous devez ajouter une variable <b> [xfvalue_X] </b> au modèle, où <b> X </b> - est une valeur du champ (Code du champ). Vous pouvez également utiliser <b> [xfgiven_X] ... [/ xfgiven_X] </b> qui affiche le texte/contenu spécifié entre eux si le champ supplémentaire a été défini. Vous pouvez également utiliser <b> [xfnotgiven_X] ... [/ xfnotgiven_X] </b> qui affiche le texte spécifié entre eux si le champ supplémentaire n'a pas été défini. <br> <br>
+Exemple:
+<div class="code">
+<b>1)</b>- Code du champ : nominfo<br>
+&nbsp;&nbsp;- Description: Nom de la source d'information (Exemple rapide : Doc-dle)<br>
+&nbsp;&nbsp;- Valeur par défaut: Nom<br>
+&nbsp;&nbsp;- Type de champ: Petit champ<br>
+&nbsp;&nbsp;- Optionnel : Oui<br>
+<b>2)</b>- Code du champ : source<br>
+&nbsp;&nbsp;- Description : Lien vers la source d'information <br>
+&nbsp;&nbsp;- Valeur par défaut : https://site.com/<br>
+&nbsp;&nbsp;- Optionnel : Oui<br>
+[xfgiven_source]Source - &lt;a href=[xfvalue_source] target=_blank&gt;[xfvalue_nominfo]&lt;/a&gt;.[/xfgiven_source]<br>
+[xfnotgiven_source]Source non spécifiée[/xfnotgiven_source]</div>
+Si ce champ a été défini pendant la publication, le code HTML suivant sera affiché en conséquence:
+<div class="code">Source - &lt;a href=https://site.com/ target=_blank&gt;Doc-dle&lt;/a&gt;.</div>
+Si ce champ n'a pas été défini pendant la publication, vous verrez ceci :
+<div class="code"> Source non spécifiée</div>
+Rappelez-vous que seuls les caractères latins et les nombres peuvent être utilisés pour le code du champ.
+HTML;
+
+$help_sections['title']['xprofile'] ="Champs supplémentaires dans les profils d'utilisateurs";
+$help_sections['body']['xprofile'] = <<<HTML
+Cette fonction permet d'ajouter de nouveaux champs au profil utilisateur en plus de ceux existants.<br><br>
+Ajoutez un nouveau champ en cliquant sur "Ajouter un champ". Sur la page suivante, vous devez entrer un nom unique pour le champ et une description de champ. Vous devez également choisir si vous souhaitez autoriser l'utilisateur à ajouter des informations supplémentaires lors de l'enregistrement, qu'il s'agisse d'un domaine purement personnel, et de savoir si l'utilisateur peut modifier le contenu de ce champ.<br><br>
+Des champs supplémentaires sont disponibles lors de l'affichage des commentaires et du profil utilisateur. Vous devez ajouter [xfvalue_X] aux modèles, où X - est une valeur du champ (le code du champ que vous avez entré lorsque vous avez ajouté un nouveau champ). Vous pouvez aussi utiliser [xfgiven_X]...[/xfgiven_X].<br><br>
+Eemple:
+<div class="code">
+&nbsp;&nbsp;- Code du champ: voiture<br>
+&nbsp;&nbsp;- Description : Couleur de la voiture<br>
+&nbsp;&nbsp;- Type de champ : Petit champ<br>
+&nbsp;&nbsp;- Ajouter à la page d'inscription : Oui<br>
+&nbsp;&nbsp;- Le champ peut être modifié par l'utilisateur : Oui<br>
+&nbsp;&nbsp;- Champ personnel : Non<br><br>
+dans comments.tpl et/ou userinfo.tpl vous devez ajouter<br>
+[xfgiven_voiture] Couleur de la voiture : [xfvalue_voiture] [/xfgiven_voiture]</div>
+Si l'utilisateur ajoute une couleur dans le profil utilisateur, par exemple "Vert", le code HTML suivant apparaîtra comme résultat :
+<div class="code">Couleur de la voiture : Vert</div>
+Rappelez-vous que seuls les caractères latins et les nombres peuvent être utilisés pour le code du champ.
+HTML;
+
+$help_sections['title']['banners'] ="Gestion de la publicité";
+$help_sections['body']['banners'] = <<<HTML
+Ce module est conçu pour localiser et gérer votre matériel publicitaire sur ce site rapidement et facilement. Il suffit d'ajouter la balise de la bannière dans le modèle pour placer votre bannière sur le site. 
+Après cela, vous pourrez modifier ou modifier le code de la bannière dans le Panneau d'administration, sans toucher les modèles. <br> <br>
+Après avoir ajouté votre bannière, vous pouvez placer la balise dans les modèles <b> main.tpl </b> ou <b> fullstory.tpl </b>. 
+Si vous souhaitez ajouter la bannière entre les annotations des articles, vous n'avez pas besoin d'ajouter cette balise. Il sera placé là automatiquement.
+<br />Example:
+<div class="code">
+&nbsp;&nbsp;- Titre: header<br>
+&nbsp;&nbsp;- Description : Top Banner<br>
+&nbsp;&nbsp;- Activer l'affichage de la bannière : Oui<br>
+&nbsp;&nbsp;- Afficher uniquement sur la page d'accueil : Non<br>
+&nbsp;&nbsp;- Fix location: No<br>
+&nbsp;&nbsp;- Place between the short articles: No<br><br>
+After than you can add your banner’s tag <b>{banner_header}</b> into <b>main.tpl</b> or <b>fullstory.tpl</b>. <br />
+</div>
+You can use HTML and JavaScript when you add a banner code.	
+HTML;
+
+
+$help_sections['title']['date'] ="Local time and date format";
+$help_sections['body']['date'] = <<<HTML
+The following symbols can be recognized in the format string: 
+<ul>
+<li><b>a</b> - "am" or "pm"</li>
+<li><b>A</b> - "AM" or "PM"</li>
+<li><b>B</b> - Swatch Internet time </li>
+<li><b>d</b> - day of the month, 2 digits with the leading zero if necessary; from "01" to "31"</li>
+<li><b>D</b> - day of the week, alphabetic, 3 letters; for example "Fri"</li>
+<li><b>F</b> - month, alphabetic, long; for example "January"</li>
+<li><b>g</b> - hour, 12-hour format without leading zeros; from "1" to "12"</li>
+<li><b>G</b> - hour, 24-hour format without leading zeros; from "1" to "23"</li>
+<li><b>h</b> - hour, 12-hour format; from "01" to "12" </li>
+<li><b>H</b> - hour, 24-hour format; from "00" to "23" </li>
+<li><b>i</b> - minutes; from "00" to "59"</li>
+<li><b>I</b> (uppercase 'i') - "1", if Daylight Savings Time is used; otherwise - "0".</li>
+<li><b>j</b> - the day of the month without leading zeros; from "1" to "31" </li>
+<li><b>l</b> (lowercase 'L') - day of the week, alphabetic, long; for example "Friday" </li>
+<li><b>L</b> - boolean, indicating whether a leap year or not; "0" or "1"</li> 
+<li><b>m</b> - month; from "01" to "12"</li>
+<li><b>M</b> - month, alphabetic, 3 letters; for example "Jan" </li>
+<li><b>n</b> - month without leading zeros; from "1" to "12" </li>
+<li><b>O</b> - Difference from Greenwich Mean Time, in hours; for example, "+0200" </li>
+<li><b>r</b> - RFC 822 date format; for example "Thu, 21 Dec 2000 16:01:07 +0200" (introduced in PHP 4.0.4) </li>
+<li><b>s</b> - seconds; from "00" to "59"</li>
+<li><b>S</b> - English suffix for the day of the month, 2 characters; "st", "nd", "rd" or "th"</li>
+<li><b>t</b> - the number of days in a given month; from "28" to "31" </li>
+<li><b>T</b> - setting Time Zone on this computer; i.e. "EST" or "MDT" </li>
+<li><b>U</b> - seconds since Unix Epoch (since January 1, 1970 00:00:00 GMT) </li>
+<li><b>w</b> - day of the week, numeric, from "0" (Sunday) to "6" (Saturday) </li>
+<li><b>W</b> - ISO-8601 week number of year, weeks start with Monday
+(introduced in PHP 4.1.0) </li>
+<li><b>Y</b> - year, 4 digits; for example, "1999"</li>
+<li><b>y</b> - year, 2 figures; for example, "99" </li>
+<li><b>z</b> - day of the year; from "0" to "365"</li>
+<li><b>Z</b> - Time Zone offset, in seconds (from "-43200" to "43200"). </li>
+Time Zone offset is always negative for zones to the west from UTC, and is always positive to the east from UTC.</li></ul>
+HTML;
+
+$help_sections['title']['social'] ="Configure authorization";
+$help_sections['body']['social'] = <<<HTML
+<div class="bg-primary-700" style="padding:10px;">Configure authorization using Vkontakte</div>
+The first thing you need is to create a new application for <a href="http://vk.com/editapp?act=create" target="_blank">Vkontakte</a> network.<br><br>
+In the opened form you should enter the name of the application. Select "Веб-сайт", and enter your website’s address: http://yoursite.com/index.php?do=auth-social&provider=vk. Replace yoursite.com with your basic domain.
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/vk1.jpg" /></div>
+<br />After you click "Подключить сайт", you must enter a verification code from the SMS that will come in the short term. If the code will be verified, the following form with the application settings should be shown:
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/vk2.jpg" /></div>
+<br />You will need the data such as "ID приложения" and "Защищённый ключ" from this form, which you must enter in the Administration Panel of the script, in the Social Network Settings. These fields will be unique for your site, they cannot be copied from the screenshot above.
+<br /><br />After that place the following code into <b>login.tpl</b>:
+<div class="code">[vk]&lt;a href="{vk_url}" target="_blank"&gt;Log in using Vkontakte&lt;/a&gt;[/vk]</div>
+Where tags [vk] … [/vk] display the text enclosed between them if the authorization using Vkontakte network is enabled. Tag {vk_url} displays the URL link to the authorization in the social network.
+<br><br>
+<div class="bg-primary-700" style="padding:10px;">Configure authorization using Odnoklassniki</div>
+You need to fill <a href="http://www.odnoklassniki.ru/devaccess" target="_blank">the form and get the developer account</a> to register the website where the authorization using Odnoklassniki network will be performed. After that, open <a href="http://www.odnoklassniki.ru/games" target="_blank">"Игры"</a> section and find a link on the right side of the menu<a href="http://www.odnoklassniki.ru/dk?st.cmd=appsInfoMyDevList&st._aid=Apps_Info_MyDev" target="_blank">"Мои загруженные"</a>. Click "добавить приложение" and fill in the form:<br><br>
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/odnoklassniki1.jpg" /></div>
+<br />Specify “Веб” application type there, and check "External". In "Ссылка на приложение" and "Список разрешённых redirect_uri" specify: http://yoursite.com/index.php?do=auth-social&provider=od , and check "Разрешить клиентскую OAuth авторизацию". After adding a new application, you will receive an email with the needed settings.
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/odnoklassniki2.jpg" /></div>
+<br />You will need the following options: "Application ID", "Публичный ключ приложения", "Секретный ключ приложения", that you should enter to Administration Panel of the script in Social Network Settings. These fields will be unique for your site, they cannot be copied from the screenshot above.
+<br /><br />After that place the following code into <b>login.tpl</b>:
+<div class="code">[odnoklassniki]&lt;a href="{odnoklassniki_url}" target="_blank"&gt;Log in using Odnoklassniki&lt;/a&gt;[/odnoklassniki]</div>
+Where tags [odnoklassniki] … [/odnoklassniki] display the text enclosed between them if the authorization using Odnoklassniki network is enabled. Tag {odnoklassniki_url} displays the URL link to the authorization in the social network.
+<br><br>
+<div class="bg-primary-700" style="padding:10px;">Configure authorization using Facebook</div>
+The first thing you need is to create a new application for <a href="https://developers.facebook.com/apps" target="_blank">Facebook</a> network.<br><br>
+Click "+ Создать новое приложение" in the upper right corner. Then enter the name of the application:
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/fc1.jpg" /></div>
+<br /> Next, on the settings page of your application click "Add Platform". Then choose "Website" and enter your website’s address: http://yoursite.com/
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/fc2.jpg" /></div>
+<br /> Then save all your settings. For further work you need the options that you can find in the following fields:
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/fc3.jpg" /></div>
+<br />that you should enter to Administration Panel of the script in Social Network Settings. These fields will be unique for your site, they cannot be copied from the screenshot above.
+<br /><br />After that place the following code into <b>login.tpl</b>:
+<div class="code">[facebook]&lt;a href="{facebook_url}" target="_blank"&gt;Log in using Facebook&lt;/a&gt;[/facebook]</div>
+Where tags [facebook] … [/facebook] display the text enclosed between them if the authorization using Facebook network is enabled. Tag {facebook_url} displays the URL link to the authorization in the social network.
+<br><br>
+<div class="bg-primary-700" style="padding:10px;">Configure authorization using Google</div>
+The first thing you need is to create a new application <a href="https://code.google.com/apis/console/" target="_blank">Google</a>. After navigating to the page click on "Create project".
+<div style="text-align:center;"><img src="engine/skins/images/google1.jpg" /></div>
+After completing the form, go to the library and click on the Google+ API (note that the top should be the name of your created project)
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/google2.jpg" /></div>
+<br />Include this API, and after activation You will be prompted to create credentials. Fill in the form. And save:
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/google3.jpg" /></div>
+<br />Fill the form:
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/google4.jpg" /></div>
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/google5.jpg" /></div>
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/google6.jpg" /></div>
+<br />You will need the following options: "Client ID" and "Client Secret" that you should enter to Administration Panel of the script in Social Network Settings. These fields will be unique for your site, they cannot be copied from the screenshot above.
+<br /><br />After that place the following code into <b>login.tpl</b>:
+<div class="code">[google]&lt;a href="{google_url}" target="_blank"&gt;Log in using Google&lt;/a&gt;[/google]</div>
+Where tags [google] … [/google] display the text enclosed between them if the authorization using Google is enabled. Tag {google_url}  displays the URL link to the authorization in the network.
+<br><br>
+<div class="bg-primary-700" style="padding:10px;">Configure authorization using Mail.Ru</div>
+First you need to create a new application on <a href="http://api.mail.ru/sites/my/add" target="_blank">Mail.Ru</a>.<br><br>
+On the next page you need to agree with the rules. Next, fill in the form below:
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/mailru1.jpg" /></div>
+<br />Then click "Продолжить" and move to the next step. Now you need to download receiver.html, place it to your project’s directory and let Mail.ru check the availability of this file. When you successfully add your website to Mail.ru, you should see the following message with the special parameters:
+<br /><br /><div style="text-align:center;"><img src="engine/skins/images/mailru2.jpg" /></div>
+<br />You will need the following options: "ID" and "Секретный ключ", that you should enter to Administration Panel of the script in Social Network Settings. These fields will be unique for your site, they cannot be copied from the screenshot above.
+<br /><br />After that place the following code into <b>login.tpl</b>:
+<div class="code">[mailru]&lt;a href="{mailru_url}" target="_blank"&gt;Log in using Mail.Ru&lt;/a&gt;[/mailru]</div>
+Where tags [mailru] … [/mailru] display the text enclosed between them if the authorization using Mail.Ru is enabled. Tag {mailru_url} displays the URL link to the authorization in the network.
+<br><br>
+<div class="bg-primary-700" style="padding:10px;">Configure authorization using Yandex</div>
+First you need to create a new application on <a href="https://oauth.yandex.ru/client/new" target="_blank">Yandex</a>.<br><br>
+<div style="text-align:center;"><img src="engine/skins/images/yandex1.jpg" /></div>
+<br />The title will be "Yandex Auth". Choose "Яндекс.Логин" and select all items: e-mail address, date of birth, username of the full name. We will get the access to them if user entered all the data in the user profile.  Block with the special parameters will be shown on the next page:
+<div style="text-align:center;"><img src="engine/skins/images/yandex2.jpg" /></div>
+<br />You will need the following options: "ID приложения" and "Пароль приложения", that you should enter to Administration Panel of the script in Social Network Settings. These fields will be unique for your site, they cannot be copied from the screenshot above.
+<br /><br />After that, place the following code into <b>login.tpl</b>:
+<div class="code">[yandex]&lt;a href="{yandex_url}" target="_blank"&gt;Log in using Yandex&lt;/a&gt;[/yandex]</div>
+Where tags [yandex] … [/yandex] display the text enclosed between them if the authorization using Yandex is enabled. Tag {yandex_url} displays the URL link to the authorization in the network.
+HTML;
+
+?>
